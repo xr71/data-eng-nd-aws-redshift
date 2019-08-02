@@ -158,7 +158,7 @@ songplay_table_insert = ("""
 user_table_insert = ("""
     INSERT INTO users
     (userid, firstName, lastName, gender, level)
-    select disinct userid
+    select distinct userid
           ,firstName
           ,lastName
           ,gender
@@ -201,7 +201,7 @@ time_table_insert = ("""
           ,extract(weekday from starttime) as weekday
     FROM (
         select distinct 
-               'epoch' + starttime/1000*INTERVAL '1 second' as starttime
+               TIMESTAMP 'epoch' + starttime/1000*INTERVAL '1 second' as starttime
         from staging_events
     ) as e
 """)
